@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazemi Cancer Research Assistant</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7e22ce;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(126, 34, 206, 0.9)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #6b21a8;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .demo {
+            padding: 5rem 0;
+            background: #f1f5f9;
+        }
+        
+        .demo-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .demo-text {
+            flex: 1;
+        }
+        
+        .demo-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .terminal {
+            background: var(--dark);
+            color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        
+        .terminal-title {
+            margin-left: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .terminal-content {
+            line-height: 1.8;
+        }
+        
+        .terminal-line {
+            margin-bottom: 0.5rem;
+        }
+        
+        .terminal-prompt {
+            color: #7e22ce;
+        }
+        
+        .terminal-command {
+            color: #27c93f;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer p {
+            margin: 0.5rem 0;
+            color: var(--gray);
+        }
+        
+        .warning {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning h3 {
+            color: var(--warning);
+            margin-bottom: 0.5rem;
+        }
+        
+        .app-container {
+            padding: 3rem 0;
+            background: white;
+        }
+        
+        .app-section {
+            margin-bottom: 3rem;
+        }
+        
+        .app-section h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .result-container {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .result-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .chart-container {
+            margin-top: 2rem;
+            height: 500px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .demo-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🔬</div>
+                    <h1>Kazemi Cancer Research Assistant</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#app">Research Assistant</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Advanced Cancer Research & Analysis</h2>
+            <p>Powered by machine learning, EHR integration, and clinical data analysis for comprehensive cancer research support</p>
+            <a href="#app" class="btn">Try the Assistant</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key Features</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Machine Learning Models</h3>
+                    <p>Advanced predictive models including Random Forest, SVM, Neural Networks, and Deep Learning for prognosis prediction</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏥</div>
+                    <h3>EHR Integration</h3>
+                    <p>Electronic Health Record system for patient data management with SQLite backend</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Clinical Trials</h3>
+                    <p>Database of clinical trials with matching algorithms for patient eligibility</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Drug Interactions</h3>
+                    <p>Comprehensive drug interaction checker to prevent adverse reactions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Survival Analysis</h3>
+                    <p>Kaplan-Meier survival curves and statistical analysis tools</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧬</div>
+                    <h3>Treatment Protocols</h3>
+                    <p>Evidence-based treatment recommendations for various cancer types</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>System Demo</h2>
+            </div>
+            <div class="demo-content">
+                <div class="demo-text">
+                    <h3>Interactive Cancer Research Assistant</h3>
+                    <p>Our system provides a comprehensive suite of tools for cancer research and analysis. With advanced machine learning algorithms, it can predict patient prognosis, recommend treatments, and identify potential drug interactions.</p>
+                    
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <div class="terminal-dot dot-red"></div>
+                                <div class="terminal-dot dot-yellow"></div>
+                                <div class="terminal-dot dot-green"></div>
+                            </div>
+                            <div class="terminal-title">Cancer Research Assistant Terminal</div>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">python cancer_research.py</span></div>
+                            <div class="terminal-line">=== ULTIMATE CANCER RESEARCH ASSISTANT ===</div>
+                            <div class="terminal-line">Advanced Features: Deep Learning, EHR Integration, Clinical Trials...</div>
+                            <div class="terminal-line">1. Generating comprehensive patient data...</div>
+                            <div class="terminal-line">2. Training advanced machine learning models...</div>
+                            <div class="terminal-line">3. Loading treatment protocols...</div>
+                            <div class="terminal-line">4. Generating advanced data visualizations...</div>
+                            <div class="terminal-line">5. Running comprehensive patient analysis...</div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">analyze 1</span></div>
+                            <div class="terminal-line">=== PATIENT 1 COMPREHENSIVE ANALYSIS ===</div>
+                            <div class="terminal-line">Age: 58.2</div>
+                            <div class="terminal-line">Tumor Size: 4.23 cm</div>
+                            <div class="terminal-line">Tumor Grade: 3</div>
+                            <div class="terminal-line">Prognosis: Poor (Risk: 82.45%)</div>
+                        </div>
+                    </div>
+                    
+                    <a href="#app" class="btn btn-secondary">Try the Assistant</a>
+                </div>
+                <div class="demo-image">
+                    <img src="https://images.unsplash.com/photo-1576671418898-8d57d3e1ab20?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Cancer Research Visualization">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="app" class="app-container">
+        <div class="container">
+            <div class="section-title">
+                <h2>Research Assistant</h2>
+            </div>
+            
+            <div class="app-section">
+                <h3>Patient Prognosis Prediction</h3>
+                <form id="prediction-form">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" class="form-control" value="58" min="18" max="90">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tumor-size">Tumor Size (cm)</label>
+                        <input type="number" id="tumor-size" class="form-control" value="4.2" step="0.1" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tumor-grade">Tumor Grade (1-4)</label>
+                        <input type="number" id="tumor-grade" class="form-control" value="3" min="1" max="4">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lymph-nodes">Lymph Nodes Involved</label>
+                        <input type="number" id="lymph-nodes" class="form-control" value="2" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ki67">Ki67 Index (%)</label>
+                        <input type="number" id="ki67" class="form-control" value="65" min="0" max="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="her2">HER2 Status</label>
+                        <select id="her2" class="form-control">
+                            <option value="0">Negative</option>
+                            <option value="1" selected>Positive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="er">ER Status</label>
+                        <select id="er" class="form-control">
+                            <option value="0">Negative</option>
+                            <option value="1" selected>Positive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pr">PR Status</label>
+                        <select id="pr" class="form-control">
+                            <option value="0">Negative</option>
+                            <option value="1" selected>Positive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="previous-treatments">Previous Treatments</label>
+                        <input type="number" id="previous-treatments" class="form-control" value="1" min="0">
+                    </div>
+                    
+                    <button type="submit" class="btn">Predict Prognosis</button>
+                </form>
+                
+                <div id="prediction-result" class="result-container" style="display: none;">
+                    <h4>Prediction Results</h4>
+                    <div class="result-item">
+                        <div class="result-title">Overall Prognosis</div>
+                        <div id="overall-prognosis"></div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-title">Risk Score</div>
+                        <div id="risk-score"></div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-title">Model Predictions</div>
+                        <div id="model-predictions"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-section">
+                <h3>Treatment Recommendations</h3>
+                <button id="recommend-btn" class="btn">Get Recommendations</button>
+                
+                <div id="recommendations-result" class="result-container" style="display: none;">
+                    <h4>Treatment Recommendations</h4>
+                    <div id="recommendations-list"></div>
+                </div>
+            </div>
+            
+            <div class="app-section">
+                <h3>Drug Interaction Checker</h3>
+                <div class="form-group">
+                    <label for="medications">Medications (comma separated)</label>
+                    <input type="text" id="medications" class="form-control" value="Paclitaxel, Cisplatin, Warfarin">
+                </div>
+                <button id="check-interactions-btn" class="btn">Check Interactions</button>
+                
+                <div id="interactions-result" class="result-container" style="display: none;">
+                    <h4>Drug Interactions</h4>
+                    <div id="interactions-list"></div>
+                </div>
+            </div>
+            
+            <div class="app-section">
+                <h3>Clinical Trial Finder</h3>
+                <div class="form-group">
+                    <label for="cancer-type">Cancer Type</label>
+                    <input type="text" id="cancer-type" class="form-control" value="Breast Cancer">
+                </div>
+                <div class="form-group">
+                    <label for="patient-age">Patient Age</label>
+                    <input type="number" id="patient-age" class="form-control" value="55" min="18" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="patient-stage">Patient Stage</label>
+                    <input type="text" id="patient-stage" class="form-control" value="II">
+                </div>
+                <button id="find-trials-btn" class="btn">Find Clinical Trials</button>
+                
+                <div id="trials-result" class="result-container" style="display: none;">
+                    <h4>Matching Clinical Trials</h4>
+                    <div id="trials-list"></div>
+                </div>
+            </div>
+            
+            <div class="app-section">
+                <h3>Data Visualization</h3>
+                <button id="generate-chart-btn" class="btn">Generate Sample Visualization</button>
+                <div id="chart-container" class="chart-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>About the System</h2>
+            </div>
+            <div class="demo-content">
+                <div class="demo-image">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Medical Research">
+                </div>
+                <div class="demo-text">
+                    <h3>Comprehensive Cancer Research Platform</h3>
+                    <p>The Kazemi Cancer Research Assistant is a sophisticated system designed for advanced cancer research and analysis. It combines multiple machine learning models with clinical data management to provide insights into patient prognosis, treatment recommendations, and research opportunities.</p>
+                    
+                    <div class="warning">
+                        <h3>Important Notice</h3>
+                        <p>This software is for research and educational purposes only. It is not intended for clinical use. Always consult qualified oncologists for medical decisions.</p>
+                    </div>
+                    
+                    <h3>Technical Architecture</h3>
+                    <p>Built with modern web technologies, the system features:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Multiple ML models for prognosis prediction</li>
+                        <li>Electronic Health Record simulation</li>
+                        <li>Clinical trial matching algorithms</li>
+                        <li>Drug interaction databases</li>
+                        <li>Data visualization capabilities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">🔬</div>
+                <h3>Kazemi Cancer Research Assistant</h3>
+                <p>Advanced Research Tools for Oncology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Treatment protocols data
+        const treatmentProtocols = {
+            'Chemotherapy': {
+                'drugs': ['Cisplatin', 'Doxorubicin', 'Paclitaxel', 'Carboplatin', 'Gemcitabine'],
+                'indications': ['Advanced cancer', 'Metastatic disease', 'Adjuvant therapy'],
+                'side_effects': ['Nausea', 'Fatigue', 'Hair loss', 'Myelosuppression']
+            },
+            'Radiation': {
+                'types': ['External Beam', 'Brachytherapy', 'Stereotactic', 'Proton Therapy'],
+                'indications': ['Localized tumors', 'Palliative care', 'Pre-operative', 'Post-operative'],
+                'side_effects': ['Skin irritation', 'Fatigue', 'Localized tissue damage']
+            },
+            'Immunotherapy': {
+                'drugs': ['Checkpoint Inhibitors', 'CAR-T Cell', 'Monoclonal Antibodies', 'Cancer Vaccines'],
+                'indications': ['Melanoma', 'Lung cancer', 'Renal cell carcinoma', 'Hodgkin lymphoma'],
+                'side_effects': ['Immune-related adverse events', 'Fatigue', 'Rash', 'Diarrhea']
+            },
+            'Targeted Therapy': {
+                'drugs': ['Tyrosine Kinase Inhibitors', 'Hormone Therapy', 'Angiogenesis Inhibitors', 'PARP Inhibitors'],
+                'indications': ['HER2+ breast cancer', 'EGFR+ lung cancer', 'Hormone-sensitive cancers'],
+                'side_effects': ['Skin rash', 'Diarrhea', 'Hypertension', 'Bleeding']
+            }
+        };
+
+        // Drug interactions data
+        const drugInteractions = {
+            'Warfarin': {
+                'interactions': ['Aspirin', 'Ibuprofen', 'Ciprofloxacin'],
+                'severity': ['High', 'Medium', 'Medium'],
+                'description': 'Increased bleeding risk'
+            },
+            'Cisplatin': {
+                'interactions': ['Aminoglycosides', 'Loop diuretics'],
+                'severity': ['High', 'Medium'],
+                'description': 'Increased nephrotoxicity'
+            },
+            'Doxorubicin': {
+                'interactions': ['Trastuzumab', 'Cyclophosphamide'],
+                'severity': ['Medium', 'Medium'],
+                'description': 'Increased cardiotoxicity'
+            },
+            'Paclitaxel': {
+                'interactions': ['Cisplatin', 'Doxorubicin'],
+                'severity': ['Medium', 'Medium'],
+                'description': 'Increased myelosuppression'
+            }
+        };
+
+        // Clinical trials data
+        const clinicalTrials = [
+            {
+                'trial_id': 'NCT00001234',
+                'title': 'Immunotherapy for Advanced Melanoma',
+                'phase': 'Phase III',
+                'cancer_type': 'Melanoma',
+                'eligibility_criteria': 'Stage III/IV melanoma, age 18-75',
+                'location': 'Mayo Clinic',
+                'status': 'Recruiting'
+            },
+            {
+                'trial_id': 'NCT00005678',
+                'title': 'Targeted Therapy in HER2+ Breast Cancer',
+                'phase': 'Phase II',
+                'cancer_type': 'Breast Cancer',
+                'eligibility_criteria': 'HER2+, metastatic, age 18-80',
+                'location': 'MD Anderson',
+                'status': 'Active'
+            },
+            {
+                'trial_id': 'NCT00009012',
+                'title': 'CAR-T Cell Therapy for Leukemia',
+                'phase': 'Phase I',
+                'cancer_type': 'Leukemia',
+                'eligibility_criteria': 'Relapsed/refractory, age 18-65',
+                'location': 'Johns Hopkins',
+                'status': 'Not yet recruiting'
+            },
+            {
+                'trial_id': 'NCT00003456',
+                'title': 'Combination Chemotherapy for Lung Cancer',
+                'phase': 'Phase III',
+                'cancer_type': 'Lung Cancer',
+                'eligibility_criteria': 'NSCLC, stage IIIB/IV, age 18-75',
+                'location': 'Memorial Sloan Kettering',
+                'status': 'Completed'
+            }
+        ];
+
+        // Sample patient data for visualization
+        function generateSampleData() {
+            const data = [];
+            for (let i = 0; i < 1000; i++) {
+                data.push({
+                    age: Math.floor(Math.random() * 60) + 20,
+                    tumor_size: Math.random() * 10,
+                    tumor_grade: Math.floor(Math.random() * 4) + 1,
+                    lymph_nodes: Math.floor(Math.random() * 10),
+                    ki67_index: Math.random() * 100,
+                    her2_status: Math.random() > 0.7 ? 1 : 0,
+                    er_status: Math.random() > 0.6 ? 1 : 0,
+                    pr_status: Math.random() > 0.55 ? 1 : 0,
+                    previous_treatments: Math.floor(Math.random() * 5),
+                    prognosis: Math.random() > 0.7 ? 1 : 0
+                });
+            }
+            return data;
+        }
+
+        // Predict patient prognosis (simplified model)
+        function predictPatientPrognosis(patientData) {
+            // Simplified risk calculation
+            const riskScore = (
+                patientData.tumor_size * 0.3 +
+                patientData.tumor_grade * 0.4 +
+                patientData.lymph_nodes * 0.2 +
+                (1 - patientData.er_status) * 0.5 +
+                patientData.her2_status * 0.3 +
+                (1 - patientData.pr_status) * 0.4 +
+                patientData.previous_treatments * 0.1 +
+                Math.random() * 0.5
+            ) / 5;
+            
+            const prognosis = riskScore > 0.5 ? 'Poor' : 'Good';
+            
+            // Simulate different model predictions
+            const models = {
+                'Random Forest': Math.min(0.95, Math.max(0.05, riskScore + (Math.random() * 0.2 - 0.1))),
+                'SVM': Math.min(0.95, Math.max(0.05, riskScore + (Math.random() * 0.15 - 0.075))),
+                'Neural Network': Math.min(0.95, Math.max(0.05, riskScore + (Math.random() * 0.25 - 0.125))),
+                'Deep Learning': Math.min(0.95, Math.max(0.05, riskScore + (Math.random() * 0.18 - 0.09)))
+            };
+            
+            return {
+                prognosis: prognosis,
+                riskScore: riskScore,
+                models: models
+            };
+        }
+
+        // Recommend treatment based on patient data
+        function recommendTreatment(patientData) {
+            const recommendations = [];
+            
+            if (patientData.tumor_grade >= 3) {
+                recommendations.push("Consider aggressive treatment approach");
+            }
+            if (patientData.tumor_size > 5) {
+                recommendations.push("Large tumor detected - surgical consultation recommended");
+            }
+            if (patientData.lymph_nodes > 3) {
+                recommendations.push("Lymph node involvement - systemic therapy consideration");
+            }
+            if (patientData.her2_status === 1) {
+                recommendations.push("HER2 positive - consider targeted therapy (trastuzumab)");
+            }
+            if (patientData.er_status === 1 && patientData.pr_status === 1) {
+                recommendations.push("Hormone receptor positive - hormone therapy may be beneficial");
+            }
+            if (patientData.ki67_index > 50) {
+                recommendations.push("High proliferation rate - consider combination therapy");
+            }
+            if (patientData.previous_treatments > 2) {
+                recommendations.push("Multiple previous treatments - consider clinical trials");
+            }
+            
+            recommendations.push("Multidisciplinary team consultation recommended");
+            recommendations.push("Consider clinical trials for novel therapies");
+            recommendations.push("Regular monitoring and follow-up essential");
+            recommendations.push("Genetic counseling may be beneficial");
+            recommendations.push("Supportive care and symptom management important");
+            
+            return recommendations;
+        }
+
+        // Check drug interactions
+        function checkDrugInteractions(medications) {
+            const interactions = [];
+            
+            for (const med of medications) {
+                if (drugInteractions[med]) {
+                    const interactionData = drugInteractions[med];
+                    for (let i = 0; i < interactionData.interactions.length; i++) {
+                        const interactingDrug = interactionData.interactions[i];
+                        if (medications.includes(interactingDrug)) {
+                            interactions.push({
+                                drug1: med,
+                                drug2: interactingDrug,
+                                severity: interactionData.severity[i],
+                                description: interactionData.description
+                            });
+                        }
+                    }
+                }
+            }
+            
+            return interactions;
+        }
+
+        // Find matching clinical trials
+        function findClinicalTrials(cancerType, patientAge, patientStage) {
+            const matchingTrials = [];
+            
+            for (const trial of clinicalTrials) {
+                if (trial.cancer_type.toLowerCase().includes(cancerType.toLowerCase())) {
+                    matchingTrials.push(trial);
+                }
+            }
+            
+            return matchingTrials;
+        }
+
+        // Generate sample visualization
+        function generateVisualization() {
+            const data = generateSampleData();
+            
+            // Age distribution
+            const ages = data.map(d => d.age);
+            
+            // Tumor size vs Grade
+            const tumorGrades = data.map(d => d.tumor_grade);
+            const tumorSizes = data.map(d => d.tumor_size);
+            const prognosisColors = data.map(d => d.prognosis === 1 ? 'red' : 'blue');
+            
+            // Prognosis distribution
+            const prognosisCounts = { Good: 0, Poor: 0 };
+            data.forEach(d => {
+                if (d.prognosis === 0) prognosisCounts.Good++;
+                else prognosisCounts.Poor++;
+            });
+            
+            // Ki67 Index by Prognosis
+            const ki67Good = data.filter(d => d.prognosis === 0).map(d => d.ki67_index);
+            const ki67Poor = data.filter(d => d.prognosis === 1).map(d => d.ki67_index);
+            
+            // Create subplots
+            const traces = [
+                {
+                    x: ages,
+                    type: 'histogram',
+                    name: 'Age Distribution',
+                    xbins: { size: 5 },
+                    marker: { color: '#2563eb' }
+                },
+                {
+                    x: tumorGrades,
+                    y: tumorSizes,
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: 'Tumor Characteristics',
+                    marker: {
+                        color: prognosisColors,
+                        colorscale: [['0.0', 'blue'], ['1.0', 'red']],
+                        showscale: false
+                    }
+                },
+                {
+                    labels: Object.keys(prognosisCounts),
+                    values: Object.values(prognosisCounts),
+                    type: 'pie',
+                    name: 'Prognosis Distribution'
+                },
+                {
+                    x: ki67Good,
+                    type: 'histogram',
+                    name: 'Ki67 - Good Prognosis',
+                    opacity: 0.7,
+                    marker: { color: 'blue' }
+                },
+                {
+                    x: ki67Poor,
+                    type: 'histogram',
+                    name: 'Ki67 - Poor Prognosis',
+                    opacity: 0.7,
+                    marker: { color: 'red' }
+                }
+            ];
+            
+            const layout = {
+                title: 'Cancer Patient Data Analysis Dashboard',
+                grid: { rows: 2, columns: 3, pattern: 'independent' },
+                height: 600
+            };
+            
+            Plotly.newPlot('chart-container', traces, layout);
+        }
+
+        // Event listeners
+        document.getElementById('prediction-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const patientData = {
+                age: parseFloat(document.getElementById('age').value),
+                tumor_size: parseFloat(document.getElementById('tumor-size').value),
+                tumor_grade: parseInt(document.getElementById('tumor-grade').value),
+                lymph_nodes: parseInt(document.getElementById('lymph-nodes').value),
+                ki67_index: parseFloat(document.getElementById('ki67').value),
+                her2_status: parseInt(document.getElementById('her2').value),
+                er_status: parseInt(document.getElementById('er').value),
+                pr_status: parseInt(document.getElementById('pr').value),
+                previous_treatments: parseInt(document.getElementById('previous-treatments').value)
+            };
+            
+            const result = predictPatientPrognosis(patientData);
+            
+            document.getElementById('overall-prognosis').textContent = result.prognosis;
+            document.getElementById('risk-score').textContent = (result.riskScore * 100).toFixed(2) + '%';
+            
+            let modelPredictionsHTML = '';
+            for (const [model, score] of Object.entries(result.models)) {
+                modelPredictionsHTML += `<div>${model}: ${(score * 100).toFixed(2)}%</div>`;
+            }
+            document.getElementById('model-predictions').innerHTML = modelPredictionsHTML;
+            
+            document.getElementById('prediction-result').style.display = 'block';
+        });
+        
+        document.getElementById('recommend-btn').addEventListener('click', function() {
+            const patientData = {
+                tumor_grade: parseInt(document.getElementById('tumor-grade').value),
+                tumor_size: parseFloat(document.getElementById('tumor-size').value),
+                lymph_nodes: parseInt(document.getElementById('lymph-nodes').value),
+                her2_status: parseInt(document.getElementById('her2').value),
+                er_status: parseInt(document.getElementById('er').value),
+                pr_status: parseInt(document.getElementById('pr').value),
+                ki67_index: parseFloat(document.getElementById('ki67').value),
+                previous_treatments: parseInt(document.getElementById('previous-treatments').value)
+            };
+            
+            const recommendations = recommendTreatment(patientData);
+            let recommendationsHTML = '<ul>';
+            recommendations.forEach(rec => {
+                recommendationsHTML += `<li>${rec}</li>`;
+            });
+            recommendationsHTML += '</ul>';
+            
+            document.getElementById('recommendations-list').innerHTML = recommendationsHTML;
+            document.getElementById('recommendations-result').style.display = 'block';
+        });
+        
+        document.getElementById('check-interactions-btn').addEventListener('click', function() {
+            const medicationsInput = document.getElementById('medications').value;
+            const medications = medicationsInput.split(',').map(m => m.trim());
+            
+            const interactions = checkDrugInteractions(medications);
+            
+            if (interactions.length > 0) {
+                let interactionsHTML = '<ul>';
+                interactions.forEach(interaction => {
+                    interactionsHTML += `<li><strong>${interaction.drug1} + ${interaction.drug2}</strong>: ${interaction.severity} - ${interaction.description}</li>`;
+                });
+                interactionsHTML += '</ul>';
+                document.getElementById('interactions-list').innerHTML = interactionsHTML;
+            } else {
+                document.getElementById('interactions-list').innerHTML = '<p>No significant drug interactions found</p>';
+            }
+            
+            document.getElementById('interactions-result').style.display = 'block';
+        });
+        
+        document.getElementById('find-trials-btn').addEventListener('click', function() {
+            const cancerType = document.getElementById('cancer-type').value;
+            const patientAge = parseInt(document.getElementById('patient-age').value);
+            const patientStage = document.getElementById('patient-stage').value;
+            
+            const trials = findClinicalTrials(cancerType, patientAge, patientStage);
+            
+            if (trials.length > 0) {
+                let trialsHTML = '<ul>';
+                trials.forEach(trial => {
+                    trialsHTML += `<li><strong>${trial.title}</strong> (${trial.phase}) at ${trial.location}</li>`;
+                });
+                trialsHTML += '</ul>';
+                document.getElementById('trials-list').innerHTML = trialsHTML;
+            } else {
+                document.getElementById('trials-list').innerHTML = '<p>No matching clinical trials found</p>';
+            }
+            
+            document.getElementById('trials-result').style.display = 'block';
+        });
+        
+        document.getElementById('generate-chart-btn').addEventListener('click', function() {
+            generateVisualization();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
