@@ -28,9 +28,7 @@ It provides an interactive dashboard for analyzing cancer-related datasets, visu
 ```
 
 .
-├── index.html        # Main entry point
-├── style.css         # Custom styling
-├── script.js         # Interactive logic & data handling
+├── cancer_research_assistant.html        # Main entry point
 └── README.md         # Project documentation
 
 ````
