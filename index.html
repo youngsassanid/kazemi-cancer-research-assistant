@@ -1,136 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Cancer Research Assistant</title>
-    <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-powered cancer research assistant with prognosis prediction, treatment recommendations, and clinical trial matching." />
+  <title>Kazemi Cancer Research Assistant</title>
+
+  <script src="https://cdn.plot.ly/plotly-2.33.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">🔬</div>
-                    <h1>Ultimate Cancer Research Assistant</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="features.html">Features</a></li>
-                        <li><a href="research-assistant.html">Research Assistant</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <h2>Advanced Cancer Research & Analysis</h2>
-            <p>Powered by machine learning, EHR integration, and clinical data analysis for comprehensive cancer research support</p>
-            <a href="research-assistant.html" class="btn">Try the Assistant</a>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">🔬</div>
+          <h1>Kazemi Cancer Research Assistant</h1>
         </div>
-    </section>
+        <nav>
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li><a href="assistant.html">Assistant</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Key Features</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>Machine Learning Models</h3>
-                    <p>Advanced predictive models including Random Forest, SVM, Neural Networks, and Deep Learning for prognosis prediction</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏥</div>
-                    <h3>EHR Integration</h3>
-                    <p>Electronic Health Record system for patient data management with SQLite backend</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧪</div>
-                    <h3>Clinical Trials</h3>
-                    <p>Database of clinical trials with matching algorithms for patient eligibility</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💊</div>
-                    <h3>Drug Interactions</h3>
-                    <p>Comprehensive drug interaction checker to prevent adverse reactions</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Survival Analysis</h3>
-                    <p>Kaplan-Meier survival curves and statistical analysis tools</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧬</div>
-                    <h3>Treatment Protocols</h3>
-                    <p>Evidence-based treatment recommendations for various cancer types</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h2>Advanced Cancer Research & Analysis</h2>
+      <p>AI-powered prognosis prediction, EHR integration, clinical trial matching, and treatment intelligence for oncology research.</p>
+      <a href="assistant.html" class="btn">Launch Assistant</a>
+    </div>
+  </section>
 
-    <section class="demo">
-        <div class="container">
-            <div class="section-title">
-                <h2>System Demo</h2>
-            </div>
-            <div class="demo-content">
-                <div class="demo-text">
-                    <h3>Interactive Cancer Research Assistant</h3>
-                    <p>Our system provides a comprehensive suite of tools for cancer research and analysis. With advanced machine learning algorithms, it can predict patient prognosis, recommend treatments, and identify potential drug interactions.</p>
-                    
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-dots">
-                                <div class="terminal-dot dot-red"></div>
-                                <div class="terminal-dot dot-yellow"></div>
-                                <div class="terminal-dot dot-green"></div>
-                            </div>
-                            <div class="terminal-title">Cancer Research Assistant Terminal</div>
-                        </div>
-                        <div class="terminal-content">
-                            <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">python cancer_research.py</span></div>
-                            <div class="terminal-line">=== ULTIMATE CANCER RESEARCH ASSISTANT ===</div>
-                            <div class="terminal-line">Advanced Features: Deep Learning, EHR Integration, Clinical Trials...</div>
-                            <div class="terminal-line">1. Generating comprehensive patient data...</div>
-                            <div class="terminal-line">2. Training advanced machine learning models...</div>
-                            <div class="terminal-line">3. Loading treatment protocols...</div>
-                            <div class="terminal-line">4. Generating advanced data visualizations...</div>
-                            <div class="terminal-line">5. Running comprehensive patient analysis...</div>
-                            <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">analyze 1</span></div>
-                            <div class="terminal-line">=== PATIENT 1 COMPREHENSIVE ANALYSIS ===</div>
-                            <div class="terminal-line">Age: 58.2</div>
-                            <div class="terminal-line">Tumor Size: 4.23 cm</div>
-                            <div class="terminal-line">Tumor Grade: 3</div>
-                            <div class="terminal-line">Prognosis: Poor (Risk: 82.45%)</div>
-                        </div>
-                    </div>
-                    
-                    <a href="research-assistant.html" class="btn btn-secondary">Try the Assistant</a>
-                </div>
-                <div class="demo-image">
-                    <img src="https://images.unsplash.com/photo-1576671418898-8d57d3e1ab20?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Cancer Research Visualization">
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">🔬</div>
+        <h3>Kazemi Cancer Research Assistant</h3>
+        <p>Advancing Oncology Through Artificial Intelligence</p>
+      </div>
+    </div>
+  </footer>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">🔬</div>
-                <h3>Ultimate Cancer Research Assistant</h3>
-                <p>Advanced Research Tools for Oncology</p>
-                <p>© 2023 Cancer Research Institute. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/app.js"></script>
+  <script src="data.js"></script>
 </body>
 </html>

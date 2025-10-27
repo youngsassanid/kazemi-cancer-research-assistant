@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo | Kazemi Cancer Research Assistant</title>
+  <script src="https://cdn.plot.ly/plotly-2.33.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">🔬</div>
+          <h1>Kazemi Cancer Research Assistant</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="demo.html" class="active">Demo</a></li>
+            <li><a href="assistant.html">Assistant</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="demo">
+    <div class="container">
+      <div class="section-title">
+        <h2>Live System Demo</h2>
+      </div>
+      <div class="demo-content">
+        <div class="demo-text">
+          <h3>Interactive Research Assistant</h3>
+          <p>Experience real-time analysis with advanced ML models, treatment planning, and data visualization.</p>
+
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <div class="terminal-dot dot-red"></div>
+                <div class="terminal-dot dot-yellow"></div>
+                <div class="terminal-dot dot-green"></div>
+              </div>
+              <div class="terminal-title">Cancer Research Terminal</div>
+            </div>
+            <div class="terminal-content">
+              <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">python cancer_assistant.py</span></div>
+              <div class="terminal-line">ULTIMATE CANCER RESEARCH ASSISTANT v2.1</div>
+              <div class="terminal-line">Loaded: Deep Learning Models | EHR DB | Trial Matcher</div>
+              <div class="terminal-line">1. Generating synthetic cohort (n=500)...</div>
+              <div class="terminal-line">2. Training ensemble models (RF, XGB, NN)...</div>
+              <div class="terminal-line">3. Loading NCCN protocols &amp; DrugBank...</div>
+              <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">analyze patient_001</span></div>
+              <div class="terminal-line">=== COMPREHENSIVE ANALYSIS ===</div>
+              <div class="terminal-line">Age: 58 | Tumor: 4.2cm | Grade: 3 | HER2+</div>
+              <div class="terminal-line">5-Year Survival: <strong>42.1%</strong> | Risk: <strong>High (82.4%)</strong></div>
+            </div>
+          </div>
+
+          <a href="assistant.html" class="btn btn-secondary">Try It Now</a>
+        </div>
+        <div class="demo-image">
+          <img src="https://images.unsplash.com/photo-1576671418898-8d57d3e1ab20?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="AI Cancer Analysis Dashboard" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">🔬</div>
+        <h3>Kazemi Cancer Research Assistant</h3>
+        <p>Advancing Oncology Through Artificial Intelligence</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+</body>
+</html>

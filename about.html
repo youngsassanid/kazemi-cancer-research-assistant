@@ -1,75 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Ultimate Cancer Research Assistant</title>
-    <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Kazemi Cancer Research Assistant</title>
+  <script src="https://cdn.plot.ly/plotly-2.33.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">🔬</div>
-                    <h1>Ultimate Cancer Research Assistant</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="features.html">Features</a></li>
-                        <li><a href="research-assistant.html">Research Assistant</a></li>
-                        <li><a href="about.html" class="active">About</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <section class="page-header">
-        <div class="container">
-            <h1>About the System</h1>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">🔬</div>
+          <h1>Kazemi Cancer Research Assistant</h1>
         </div>
-    </section>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li><a href="assistant.html">Assistant</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-    <section class="content-section">
-        <div class="container">
-            <div class="content-grid">
-                <div class="content-image">
-                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Medical Research">
-                </div>
-                <div class="content-text">
-                    <h2>Comprehensive Cancer Research Platform</h2>
-                    <p>The Ultimate Cancer Research Assistant is a sophisticated system designed for advanced cancer research and analysis. It combines multiple machine learning models with clinical data management to provide insights into patient prognosis, treatment recommendations, and research opportunities.</p>
-                    
-                    <div class="warning">
-                        <h3>Important Notice</h3>
-                        <p>This software is for research and educational purposes only. It is not intended for clinical use. Always consult qualified oncologists for medical decisions.</p>
-                    </div>
-                    
-                    <h3>Technical Architecture</h3>
-                    <p>Built with modern web technologies, the system features:</p>
-                    <ul>
-                        <li>Multiple ML models for prognosis prediction</li>
-                        <li>Electronic Health Record simulation</li>
-                        <li>Clinical trial matching algorithms</li>
-                        <li>Drug interaction databases</li>
-                        <li>Data visualization capabilities</li>
-                    </ul>
-                </div>
-            </div>
+  <section class="demo">
+    <div class="container">
+      <div class="section-title">
+        <h2>About the Platform</h2>
+      </div>
+      <div class="demo-content">
+        <div class="demo-image">
+          <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="Medical Research Team" loading="lazy">
         </div>
-    </section>
+        <div class="demo-text">
+          <h3>Comprehensive Oncology Research Suite</h3>
+          <p>Built for researchers, oncologists, and students, this platform integrates cutting-edge AI with clinical data systems to accelerate cancer research and improve decision support.</p>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">🔬</div>
-                <h3>Ultimate Cancer Research Assistant</h3>
-                <p>Advanced Research Tools for Oncology</p>
-                <p>© 2023 Cancer Research Institute. All rights reserved.</p>
-            </div>
+          <div class="warning">
+            <h3>Important Disclaimer</h3>
+            <p><strong>For research and educational use only.</strong> This tool is not FDA-approved for clinical decision-making. Always consult qualified medical professionals.</p>
+          </div>
+
+          <h3>Technical Stack</h3>
+          <ul style="margin-left:20px; margin-top:10px; color:var(--gray-600);">
+            <li>Ensemble ML: Random Forest, XGBoost, Neural Networks</li>
+            <li>EHR: SQLite with encrypted patient records</li>
+            <li>Trials: Real-time API integration with ClinicalTrials.gov</li>
+            <li>Drugs: DrugBank + interaction ontology</li>
+            <li>Viz: Plotly.js interactive dashboards</li>
+          </ul>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">🔬</div>
+        <h3>Kazemi Cancer Research Assistant</h3>
+        <p>Advancing Oncology Through Artificial Intelligence</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
 </body>
 </html>
